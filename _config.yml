@@ -10,10 +10,10 @@
 ############################
 
 # Name of website
-title: Ada_project_test
+title: The War of The Learned
 
 # Your name to show in the footer
-author: Us
+author: Adacadabra52
 
 ###############################################
 # --- List of links in the navigation bar --- #
@@ -21,8 +21,9 @@ author: Us
 
 navbar-links:
   Home: "index"
-  Results: "results"
+  #Results: "results"
   Datasets: "datasets"
+  Github: "https://github.com/epfl-ada/ada-2025-project-adacadabra52"
 
 ################
 # --- Logo --- #
@@ -30,7 +31,7 @@ navbar-links:
 
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/assets/img/avatar-icon.png"
+#avatar: "/assets/img/avatar-icon.png"
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
@@ -100,7 +101,7 @@ share-links-active:
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "LINK_TO_GITHUB_REPO.com"
+#url-pretty: "LINK_TO_GITHUB_REPO.com"
 
 # Add the website title to the title of every page
 title-on-all-pages: true
@@ -137,14 +138,14 @@ navbar-var-length: false
 page-col: "#FFFFFF"
 text-col: "#404040"
 link-col: "#008AFF"
-hover-col: "#0085A1"
+hover-col: "#EAEAEA"
 navbar-col: "#FF4500"
 navbar-text-col: "#FFFFFF"
 navbar-border-col: "#DDDDDD"
 footer-col: "#FF4500"
 footer-text-col: "#FFFFFF"
 footer-link-col: "#DAE0E6"
-footer-hover-col: "#0085A1"
+footer-hover-col: "#EAEAEA"
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
