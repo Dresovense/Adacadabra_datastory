@@ -673,71 +673,64 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
         </p>
     </div>
 
-    <!-- SECTION: LINGUISTIC VARIATION -->
-<div class="ds-section">
-    <h2>Exploring Linguistic Styles by Community</h2>
-    <p>
-        The data reveals a fascinating spectrum of communication styles. By analyzing the 
-        <b>Linguistic Quality Index (LQI)</b> alongside the individual metrics, we can debunk 
-        some stereotypes and confirm others.
-    </p>
-    <p>
-        Use the interactive tool below to compare the <b>"Academic"</b> clusters (highest quality) 
-        against the <b>"Casual"</b> clusters (lowest quality), or explore the largest communities on Reddit.
-    </p>
+   <!-- SECTION: LINGUISTIC VARIATION -->
+    <div class="ds-section">
+        <h2>Exploring Linguistic Styles by Community</h2>
+        <p>
+            The data reveals a fascinating spectrum of communication styles. By analyzing the 
+            <b>Linguistic Quality Index (LQI)</b> alongside the individual metrics, we can debunk 
+            some stereotypes and confirm others.
+        </p>
+        <p>
+            Use the interactive tool below to compare the <b>"Academic"</b> clusters (highest quality) 
+            against the <b>"Casual"</b> clusters (lowest quality), or explore the largest communities on Reddit.
+        </p>
 
-    <!-- The Graph Frame (Full Width) -->
-    <div class="ds-frame" style="height: 700px;">
-        <iframe 
-            src="assets/plots/cluster_comparison_normalized.html" 
-            title="Cluster Linguistic Comparison">
-        </iframe>
-    </div>
-    <span class="ds-caption">
-        Normalized distribution of linguistic metrics across different community clusters. 
-        (Y-Axis represents percentage density to allow fair comparison between large and small clusters).
-    </span>
-
-    <!-- The Analysis Grid (Side by Side) -->
-    <div class="ds-grid-2">
-        
-        <!-- High LQI Analysis -->
-        <div class="ds-list-box">
-            <h4>🏆 The "Debate Halls" (High LQI)</h4>
-            <p>
-                <b>1. Politics & Activism (LQI: 0.70):</b> Unsurprisingly, this cluster takes the top spot. 
-                With a Formality score of <b>0.48</b>, these communities rely on structured argumentation.
-            </p>
-            <p>
-                <b>2. The Gaming Paradox:</b> Surprisingly, <i>League of Legends</i> (0.69) scores higher than Tech! 
-                Gamers aren't just mashing buttons; they are theory-crafting and analyzing mechanics using complex causal language ("If X, then Y...").
-            </p>
-            <p>
-                <b>3. Creative Chaos:</b> The <i>Memes/Oddities</i> cluster scores high (0.68) due to 
-                <b>Lexical Richness (0.82)</b>. Chaotic titles and s
-
-        <!-- Low LQI Analysis -->
-        <div class="ds-list-box" style="border-color: #d32f2f;">
-            <h4>🎪 The "Live Feeds" (Low LQI)</h4>
-            <p>
-                <b>1. The Language Barrier:</b> The lowest scores belong to <i>Japanese</i> (0.44) and <i>German Politics</i> (0.57). 
-                <b>This is an artifact, not stupidity.</b> Our metrics (Readability, LIWC) are English-centric. 
-                The <i>Japanese</i> cluster has high Structural Complexity (0.69) but near-zero Cognitive Depth (0.11) 
-                because our algorithms cannot detect "thinking words" in non-English scripts.
-            </p>
-            <p>
-                <b>2. The Sports Center:</b> <i>US Sports</i> is the largest community (6,600+ posts) but scores low (0.58). 
-                This reflects <b>"Real-Time" communication</b>. Game threads are dominated by short, context-heavy reactions 
-                ("Touchdown!", "Ref is blind") rather than structured essays. They have high Formality (0.59) 
-                but the lowest Cognitive Depth (0.27) in the dataset.
-            </p>
+        <!-- The Graph Frame (Full Width) -->
+        <div class="ds-frame" style="height: 700px;">
+            <iframe 
+                src="assets/plots/cluster_comparison_normalized.html" 
+                title="Cluster Linguistic Comparison">
+            </iframe>
         </div>
-    </div>
+        <span class="ds-caption">
+            Normalized distribution of linguistic metrics across different community clusters. 
+            (Y-Axis represents percentage density to allow fair comparison between large and small clusters).
+        </span>
 
-    <div class="ds-blockquote">
-        "High LQI doesn't always mean 'smarter'. It means 'more structured'. 
-        Gamers use the most reasoning words (Cognitive Depth), Meme-makers use the most unique words (Lexical Richness), 
-        and Sports fans rely on shared context (Low Complexity)."
+        <!-- The Analysis Grid (Side by Side) -->
+        <div class="ds-grid-2">
+            
+            <!-- High LQI Analysis -->
+            <div class="ds-list-box">
+                <h4>🏆 The "Debate Halls" (High LQI)</h4>
+                <p>
+                    <b>1. Politics & Activism (LQI: 0.70):</b> Unsurprisingly, this cluster takes the top spot. 
+                    With a Formality score of <b>0.48</b>, these communities rely on structured argumentation.
+                </p>
+                <p>
+                    <b>2. The Gaming Paradox:</b> Surprisingly, <i>League of Legends</i> (0.69) scores higher than Tech! 
+                    Gamers aren't just mashing buttons; they are theory-crafting and analyzing mechanics using complex causal language ("If X, then Y...").
+                </p>
+                <p>
+                    <b>3. Creative Chaos:</b> The <i>Memes/Oddities</i> cluster scores high (0.68) due to 
+                    <b>Lexical Richness (0.82)</b>. Chaotic titles and slang mathematically register as "richer" vocabulary than repetitive political talking points.
+                </p>
+            </div>
+
+            <!-- Low LQI Analysis -->
+            <div class="ds-list-box" style="border-color: #d32f2f;">
+                <h4>🎪 The "Live Feeds" (Low LQI)</h4>
+                <p>
+                    <b>1. The Language Barrier:</b> The lowest scores belong to <i>Japanese</i> (0.44) and <i>German Politics</i>. 
+                    <b>This is an artifact.</b> Our English-centric algorithms cannot detect cognitive depth in non-English scripts.
+                </p>
+                <p>
+                    <b>2. The Sports Center:</b> <i>US Sports</i> is the largest community but scores low (0.58). 
+                    This reflects <b>"Real-Time" communication</b>. Game threads are dominated by short reactions ("Touchdown!", "Ref is blind") rather than structured essays.
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 
