@@ -249,19 +249,27 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
     
     <h3>Introduction</h3>
     <p>
-        Along with the text data, we used the subreddit embedding vectors (available on the SNAP website).
-        These embeddings are high-dimensional vectors (300 dimensions) designed to represent similarities 
-        between communities in a mathematical space.
+        Along with the initial subreddit hyperlinks dataset, we used another dataset: 
+        the embedding vectors of subreddits (available on the SNAP website).
     </p>
     <p>
-        Think of it as a map: if users who post in r/Science also tend to post in r/Physics, those two 
-        subreddits will be mathematically "close" to each other. This allows us to move beyond simple 
-        topic labels and identify organic communities based on actual user behavior.
+        These embeddings are high-dimensional vectors (in our case, 300 dimensions). 
+        They are designed to represent similarities between data points in a complex space. 
+        Specifically, each of the ~50,000 subreddits is assigned a 300-dimensional vector. 
+        These vectors indicate similarity based on user behavior: if many users post in 
+        the same group of subreddits, those subreddits will be closer to each other in this
+        300-dimensional space.
+    </p>
+    <p>
+        These embeddings are very useful for our research on linguistic quality and our goal to determine 
+        'who speaks the best.' They allow us to identify clusters of subreddits where users share similar 
+        interests, effectively grouping subreddits into distinct communities.
     </p>
     
     <h3>Weakness</h3>
     <p>
-        While these embeddings are powerful, the dataset faces challenges due to the sheer scale and noise of Reddit.
+        While these embeddings are powerful and perform well, the dataset faces challenges due to the
+        nature of Reddit communities and the high number of data.    
     </p>
     
     <div class="ds-blockquote">
@@ -272,16 +280,23 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
     </div>
 
     <p>
-        Furthermore, communities are not perfectly separated into 'clean' clusters. A user interested in 
-        politics might also be a gamer and a cooking enthusiast. This creates a significant amount of overlap 
-        between vectors, creating 'noisy' links and blurring the boundaries between different communities.
+        Indeed communities are not perfectly separated into 'clean' clusters where we can easily say: 
+        'These users are only interested in politics.' Most users have diverse interests and post in a wide
+        variety of subreddits. This creates a significant amount of overlap between vectors. Consequently, 
+        some subreddits appear very close to many others in the 300-dimensional space, which can create 'noisy' 
+        links and blur the boundaries between different communities.
     </p>
 
     <h3>Visualizing the Embedding Weaknesses</h3> 
     <p>
         The following graphs illustrate the "fuzzy" nature of these communities.
-        On <b>Figure 1</b>, a 2D projection shows vectors forming a large, dense circle with significant overlap rather than distinct islands.
-        On <b>Figure 2</b>, the distribution reveals a non-negligible number of subreddits that have more than 10,000 neighbors with over 80% similarity, confirming the high density of the data.
+        On <b>Figure 1</b>, a 2D projection (using dimensionality reduction) of the 50,000 subreddits shows the vectors 
+            forming a large, dense circle with significant overlap. This visualization confirms that many communities
+            are not clearly separated.
+        On <b>Figure 2</b>, the graph displays the distribution of close neighbors (subreddits with a cosine similarity > 0.8).
+            Cosine similarity measures the orientation of two vectors in the 300-dimensional space, ranging from -1 (opposite)
+            to 1 (identical). The distribution reveals a non-negligible number of subreddits that have more than 10,000 neighbors 
+            with over 80% similarity.
     </p>
 
     <!-- PLOT 1 -->
@@ -306,9 +321,13 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
     <h1>2. What is language quality?</h1>
     <p>
         The first thing we need to know when trying to understand language quality
-        on reddit, is to actually define what language quality <em>is</em>. Is it perfect grammar? 
-        Big words? Polite tone? 
-        We decided to operationalise the concept by combining distinct linguistic dimensions:
+        on reddit, is to actually define what language quality <em>is</em>. We could 
+        define language quality of a text as "<b>the similarity between a text and
+        a shared construction of the "perfect" language</b>. [do you agree? should i remove it?]
+        However, we cannot apply directly such a definition to our data, we need to 
+        find a way to operationalise such a concept. Thus, I decided to take an
+        approach that combined both what our data provided and what different measures
+        suggested that this "shared construction" is, arriving at the following metric:
     </p>
 
     <!-- START: Metric Accordion -->
@@ -441,8 +460,11 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
     <p>
         What is a community? Oxford Languages defines it as: 'a group of people 
         living in the same place or having a particular characteristic in common.'
-        Applying this to Reddit, we aim to group subreddits with similar vector representations 
-        into distinct clusters, effectively mapping out digital communities based on shared user interests.
+        Applying this to Reddit, we can define a community as a group of users sharing a 
+        common interest. In this section, our objective is to apply clustering algorithms
+        to the subreddit embeddings. By doing so, we aim to group subreddits with similar 
+        vector representations into distinct clusters, effectively mapping out digital communities 
+        based on shared user interests.
     </p>
 
     <h2>Methodology</h2>
@@ -451,27 +473,64 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
     <p>
         The primary challenge in this analysis stems from <strong>"bridges"</strong>: 
         subreddits frequented by users from vastly different backgrounds. These bridges 
-        exhibit a high number of neighbors, making them notoriously difficult to classify.
+        exhibit a high number of neighbors, making them notoriously difficult to classify. 
+        In standard clustering, these points either force the creation of massive, noisy clusters 
+        (K-means) or are discarded entirely as outliers (HDBSCAN).
     </p>
 
     <div class="ds-list-box" style="margin-bottom: 20px;">
         <div class="ds-list-clean">
             <ul>
-                <li><strong>Why K-means Failed:</strong> It forces high-dimensional "clouds" into rigid spheres. Reddit communities are organic and irregularly shaped.</li>
-                <li><strong>HDBSCAN Limitations:</strong> Too selective. It labeled too much valid data as "noise" because the density of the Reddit "blob" is too uniform.</li>
-                <li><strong>The Solution:</strong> A network-based approach. We constructed a k-Nearest Neighbors (k-NN) graph and applied the <strong>Leiden algorithm</strong> to uncover latent community structures.</li>
+                <li>
+                    <strong>Why K-means Failed:</strong> Our initial attempt using <strong>K-means</strong> proved inadequate. 
+                    K-means inherently assumes spherical (circular) cluster shapes and requires 
+                    <i>a-priori</i> knowledge of the exact number of clusters. Given the nature of 
+                    Reddit, communities are not perfectly circular; they overlap extensively due to the diverse 
+                    interests of users. Forcing these high-dimensional "clouds" into rigid spheres resulted 
+                    in a poor representation of the social reality.
+                </li>
+                <li>
+                    <strong>The Density Limitation of HDBSCAN:</strong> was a logical next step due to its ability to handle 
+                    non-spherical shapes. However, it proved too selective for our dataset. 
+                    While it identified high-density cores, the resulting clusters were too 
+                    small, and a significant portion of the subreddits were labeled as outliers.
+                </li>
             </ul>
         </div>
     </div>
 
+    <h3>Refined Clustering Approach</h3>
+    <p>
+        At this stage, we realized our fundamental assumption was flawed: we were 
+        looking for <strong>predefined topics</strong> (e.g., "politics", "video games"). 
+        In reality, embeddings capture <strong>community behaviors</strong>. A cluster 
+        might not represent a single subject, but rather a specific demographic of 
+        users who share multiple interests.
+    </p>
+
     <p>To refine the methodology, three key improvements were implemented:</p>
     <ol>
         <li><strong>Scope Restriction:</strong> Clustering performed exclusively on subreddits in our dataset.</li>
-        <li><strong>Recursive Refinement:</strong> Noisy groups were re-processed (2nd pass).</li>
+        <li><strong>Recursive Refinement:</strong> Clusters were manually reviewed, and noisy groups were re-processed to achieve finer granularity.</li>
         <li><strong>Representative Sampling:</strong> Only the 250 subreddits closest to each cluster's centroid were retained.</li>
     </ol> 
 
-    <p>These steps significantly reduced noise and computational load, resulting in 36 high-cohesion clusters.</p>
+    <p> <strong>The first improvement</strong> significantly enhanced overall results while reducing 
+        the computational load (RAM usage). By filtering out unnecessary data, the number of active 
+        subreddits was reduced from ~50,000 to approximately 17,000.
+    </p>
+
+    <p> <strong>The second improvement</strong> expanded the diversity of identified groups. 
+        By performing a second clustering pass on the previously discarded "noise," we successfully 
+        identified 13 additional communities, bringing the total to 36 relevant clusters.
+    </p>
+
+    <p> <strong>The third improvement</strong> ensured higher community consistency. Given that 
+        the embeddings were dense and spread out, large clusters naturally accumulated noise. 
+        To counter this, we focused on the "core" of each community: by retaining only the subreddits 
+        closest to the centroids, we preserved the most representative samples. Ultimately, the final 
+        dataset consists of 6,562 subreddits distributed across 36 high-cohesion clusters.
+    </p>
 
     <h4>Results (Pass 1)</h4>   
     <div class="ds-grid-2">
@@ -489,10 +548,20 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
         </div>
     </div>
 
-    <p>
-        The second plot demonstrates a clear improvement following the distance-based pruning. 
-        We achieved a substantial noise reduction, with most distances falling below a 0.5 threshold, 
-        meaning the remaining subreddits are mathematically very similar to the "core" theme of the cluster.
+    <p> The initial plot (left) illustrates the distribution following the first clustering pass. Clusters were ranked by size, 
+        ranging from 8,070 subreddits in Cluster 0 to 52 in Cluster 29. A significant volume of data points was identified 
+        as outliers due to their high distance from the respective centroids. 
+    </p>
+
+    <p> The second plot (right) demonstrates a clear improvement following the distance-based pruning. By retaining only 
+        the subreddits closest to each centroid, we achieved a substantial noise reduction, with most distances falling 
+        below a 0.5 threshold. 
+    </p>
+
+    <p> Following this automated refinement, a manual labeling process was conducted. To facilitate this, 
+        the ten subreddits closest to each centroid were analyzed for every cluster. This allowed us to validate 
+        the thematic consistency of each group and retain only the clusters representing genuine, 
+        well-defined communities. 
     </p>
 
     <!-- Cluster Lists Grid -->
@@ -530,9 +599,9 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
         <div class="ds-list-box" style="border-color: var(--text-muted);">
             <h4>Examples near centroid</h4>
             <div style="font-size: 0.9em; line-height: 1.6;">
-                <p><strong>Cluster 2:</strong> oxygennotincluded, swgemu, speedrunnersgame, pokemmo, hollowknight...</p>
-                <p><strong>Cluster 9:</strong> soothing, noise, music_share, selfmusic, underground_music, experimental...</p>
-                <p><strong>Cluster 16:</strong> bitcoinuk, counterparty_xcp, trezor, augur, lisk, bitcoin_unlimited...</p>
+                <p><strong>Cluster 2:</strong> oxygennotincluded, swgemu, speedrunnersgame, pokemmo, hollowknight, necreopolis, darksoulsmods, sky3ds, gits_fa, playdreadnought</p>
+                <p><strong>Cluster 9:</strong> soothing, noise, music_share, selfmusic, underground_music, experimental, redditoriginals, glitch, remixes, musicinthemaking</p>
+                <p><strong>Cluster 16:</strong> bitcoinuk, counterparty_xcp, trezor, augur, lisk, bitcoin_unlimited, namecoin, primecoin, shadowcash, nubits</p>
             </div>
         </div>  
     </div>
@@ -578,10 +647,25 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
 
     <div style="margin-top: 30px;">
         <p><b>Interesting observations:</b></p>
-        <p>
-            First, most clusters are dense and well-separated. Second, outliers like <b>gamingnews</b> appearing in 
-            "My Little Pony" are actually spatially located near "Retrogaming" on the map, proving the geometry works even if the label is odd.
-            Third, "Adult Content" is intentionally grouped despite fragmentation to avoid granular categorization of fetishes.
+        <p> First, most of the clusters are dense and well-separated,
+            which successfully achieves our goal of clear topic categorization. 
+        </p>
+
+        <p> Second, we noticed some interesting outliers within the clusters. When a subreddit 
+            seems unrelated but is located at the center of a cluster, it suggests that users from 
+            that specific community actively use it, even if the connection isn't obvious at first. 
+            However, some points are clearly misplaced: for example, <b>gamingnews</b> was classified 
+            in the "My Little Pony" cluster, yet its spatial positioning on the map is between 
+            "Retrogaming" and "YouTube/Creators." This visual geography shows where it truly belongs. 
+            While a perfect classification is nearly impossible, our objective was to find the best 
+            balance between minimizing outliers and retaining as many subreddits as possible. 
+        </p>
+
+        <p> Third, there is a visible fragmentation within the "Adult Content" category, which is 
+            composed of several distinct sub-clusters. This is intentional: to avoid categorizing 
+            communities based on specific fetishes, we grouped all pornography-related subreddits 
+            under the general "Adult Content" label, even when the algorithm identified distinct 
+            sub-communities within that larger group. 
         </p>
     </div>
 </div>
