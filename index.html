@@ -56,9 +56,20 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
         <h3>Weakness</h3>
         <div>
             While these embeddings are powerful and perform well, the dataset faces challenges due to the
-            nature of Reddit communities.
+            nature of Reddit communities and the high number of data.
             <br><br>
-            In reality, communities are not perfectly separated into 'clean' clusters where we can easily say: 
+            "One might assume that a dataset of 50,000 subreddits is relatively small. However, each 
+            entry is a 300-dimensional vector, and determining similarity requires computing a pairwise 
+            distance matrix. Calculating the similarity between every possible pair of subreddits is a computationally 
+            intensive task; a full matrix for 50,000 subreddits would require approximately 20GB of RAM, exceeding the capacity 
+            of most standard machines and leading to system crashes.
+            <br><br>
+            To overcome this technical hurdle, we implemented a batch processing approach. By performing 
+            calculations in blocks, we efficiently managed memory usage without compromising the integrity 
+            of the results. While this hardware limitation was easy to solve, the more significant challenge remains 
+            the inherent 'noise' and overlap within the nature of Reddit communities themselves."
+            <br><br>
+            Indeed communities are not perfectly separated into 'clean' clusters where we can easily say: 
             'These users are only interested in politics.' Most users have diverse interests and post in a wide
             variety of subreddits. This creates a significant amount of overlap between vectors. Consequently, 
             some subreddits appear very close to many others in the 300-dimensional space, which can create 'noisy' 
@@ -67,13 +78,13 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
 
         <h3>Visualizing the Embedding Weaknesses</h3> 
         <div>
-            The following graphs illustrate the weaknesses mentioned previously.
+            The following graphs illustrate the weakness mentioned previously.
             <br><br>
-            On the left, a 2D projection (using dimensionality reduction) of the 50,000 subreddits shows the vectors 
+            On fig 1, a 2D projection (using dimensionality reduction) of the 50,000 subreddits shows the vectors 
             forming a large, dense circle with significant overlap. This visualization confirms that many communities
             are not clearly separated.
             <br><br>
-            On the right, the graph displays the distribution of close neighbors (subreddits with a cosine similarity > 0.8).
+            On fig 2, the graph displays the distribution of close neighbors (subreddits with a cosine similarity > 0.8).
             Cosine similarity measures the orientation of two vectors in the 300-dimensional space, ranging from -1 (opposite)
             to 1 (identical). The distribution reveals a non-negligible number of subreddits that have more than 10,000 neighbors 
             with over 80% similarity.
@@ -167,6 +178,93 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
 <div class="section">
     <h1>3. Linguistic variation within a topic/community</h1>
     <img src="assets/reddit_posts/comment_1.png" width="50%">
+
+    <h2> Introduction </h2>
+    <div>
+        What is a community? Oxford Languages defines it as: 'a group of people 
+        living in the same place or having a particular characteristic in common.'
+        Applying this to Reddit, we can define a community as a group of users sharing a 
+        common interest. In this section, our objective is to apply clustering algorithms
+        to the subreddit embeddings. By doing so, we aim to group subreddits with similar 
+        vector representations into distinct clusters, effectively mapping out digital communities 
+        based on shared user interests.
+    </div>
+
+    <h2> Methodology </h2>
+    <h3>Clustering Strategy and Challenges</h3>
+    
+    <div>
+        <p>
+            The primary challenge in this analysis stems from <strong>"bridges"</strong>: 
+            subreddits frequented by users from vastly different backgrounds. These bridges 
+            exhibit a high number of neighbors, making them notoriously difficult to classify. 
+            In standard clustering, these points either force the creation of massive, noisy clusters 
+            (K-means) or are discarded entirely as outliers (HDBSCAN).
+        </p>
+
+        <h4>Why K-means Failed</h4>
+        <p>
+            Our initial attempt using <strong>K-means</strong> proved inadequate. 
+            K-means inherently assumes spherical (circular) cluster shapes and requires 
+            <i>a-priori</i> knowledge of the exact number of clusters ($k$). Given the nature of 
+            Reddit, communities are not perfectly circular; they overlap extensively due to the diverse 
+            interests of users. Forcing these high-dimensional "clouds" into rigid spheres resulted 
+            in a poor representation of the social reality.
+        </p>
+
+        <h4>The Density Limitation of HDBSCAN</h4>
+        <p>
+            <strong>HDBSCAN</strong> was a logical next step due to its ability to handle 
+            non-spherical shapes. However, it proved too selective for our dataset. 
+            While it identified high-density cores, the resulting clusters were too 
+            small, and a significant portion of the subreddits were labeled as outliers. 
+        </p>
+        <p>
+            At this stage, we realized our fundamental assumption was flawed: we were 
+            looking for <strong>predefined topics</strong> (e.g., "politics", "video games"). 
+            In reality, embeddings capture <strong>community behaviors</strong>. A cluster 
+            might not represent a single subject, but rather a specific demographic of 
+            users who share multiple interests.
+        </p>
+
+        <h4>Transition to a Network-Based Approach</h4>
+        <p>
+            This led us to test a third methodology. By moving away from purely 
+            density-based approaches (which struggle with the uniform density of the 
+            "bulky circle"), we aimed for an algorithm capable of detecting community 
+            structures within the noise. While initial results 
+            were promising, many subreddits still fell into irrelevant clusters. 
+            To refine the methodology, three key improvements were implemented:
+            <ul>
+                <li><strong>1. Scope Restriction:</strong> The clustering was performed exclusively on subreddits belonging to the original dataset.</li>
+                <li><strong>2. Recursive Refinement:</strong> Clusters were manually reviewed, and noisy groups were re-processed to achieve finer granularity.</li>
+                <li><strong>3. Representative Sampling:</strong> Only the 250 subreddits closest to each cluster's centroid were retained to ensure community cohesion.</li>
+            </ul> 
+        </p>
+
+        <img src="assets/img/embedding_clustering/improv_in_clustering.png" width="50%">
+
+        <p>
+            The first improvements leads to better results and easyness for the ram to run. The available subbreddits dropped from 
+            ~50 000 to ~17 000.
+        </p>
+        <p>
+            The second improvement leads to a larger number of community. The second run on the noise gave the opportunity to create 13 other clusters
+        </p>
+        <p>
+            The third improvement leads to a consistent community. As previously mentioned, the embeddings were bulky and far from the centers, it was nearly impossible
+            to avoid noise for big clusters. Then we thoughts that despites having a lot of noisy samples for each community, let's keep the ground
+            subreddits from which a community is defined. at the end, only 6562 subreddits remains for a total of 36 clusters.
+        </p>
+    </div>
+
+    
+    
+
+
+
+
+
     <div>
         Introduce cluster methodology
         <br><br>
