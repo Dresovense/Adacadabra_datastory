@@ -672,6 +672,59 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
             sub-communities within that larger group. 
         </p>
     </div>
+
+    <h2>Exploring Linguistic Styles by Community</h2>
+    <p>
+        The data reveals a fascinating spectrum of communication styles. By analyzing the 
+        <b>Linguistic Quality Index (LQI)</b> alongside the individual metrics, we can debunk 
+        some stereotypes and confirm others.
+    </p>
+
+    <div class="ds-grid-2">
+        <!-- High LQI Analysis -->
+        <div class="ds-list-box">
+            <h4>🏆 The "Debate Halls" (High LQI)</h4>
+            <p>
+                <b>1. Politics & Activism (LQI: 0.70):</b> Unsurprisingly, this cluster takes the top spot. 
+                With a Formality score of <b>0.48</b> and moderate Cognitive Depth, these communities rely on 
+                structured argumentation and standardized English.
+            </p>
+            <p>
+                <b>2. The Gaming Paradox:</b> Surprisingly, <i>League of Legends</i> (0.69) and <i>Hard Videogames</i> (0.68) 
+                score exceptionally high—higher than Tech! Why? Look at the <b>Cognitive Depth</b> (0.50 vs 0.43 for Politics). 
+                Gamers aren't just mashing buttons; they are theory-crafting, analyzing patch notes, and debating mechanics 
+                using complex causal language ("If X happens, then Y...").
+            </p>
+            <p>
+                <b>3. Creative Chaos:</b> The <i>Memes/Oddities</i> cluster scores high (0.68) for a specific reason: 
+                <b>Lexical Richness (0.82)</b>. While the content might be silly, the vocabulary is incredibly diverse (slang, neologisms, chaotic titles), 
+                mathematically registering as "richer" than repetitive political talking points.
+            </p>
+        </div>
+
+        <!-- Low LQI Analysis -->
+        <div class="ds-list-box" style="border-color: #d32f2f;">
+            <h4>🎪 The "Live Feeds" (Low LQI)</h4>
+            <p>
+                <b>1. The Language Barrier:</b> The lowest scores belong to <i>Japanese</i> (0.44) and <i>German Politics</i> (0.57). 
+                <b>This is an artifact, not stupidity.</b> Our metrics (Readability, LIWC) are English-centric. 
+                The <i>Japanese</i> cluster has high Structural Complexity (0.69) but near-zero Cognitive Depth (0.11) 
+                because our algorithms cannot detect "thinking words" in non-English scripts.
+            </p>
+            <p>
+                <b>2. The Sports Center:</b> <i>US Sports</i> is the largest community (6,600+ posts) but scores low (0.58). 
+                This reflects <b>"Real-Time" communication</b>. Game threads are dominated by short, context-heavy reactions 
+                ("Touchdown!", "Ref is blind") rather than structured essays. They have high Formality (0.59) 
+                but the lowest Cognitive Depth (0.27) in the dataset.
+            </p>
+        </div>
+    </div>
+
+    <div class="ds-blockquote">
+        "High LQI doesn't always mean 'smarter'. It means 'more structured'. 
+        Gamers use the most reasoning words (Cognitive Depth), Meme-makers use the most unique words (Lexical Richness), 
+        and Sports fans rely on shared context (Low Complexity)."
+    </div>
 </div>
 
 <!-- SECTION: VARIATION ACROSS REDDIT -->
