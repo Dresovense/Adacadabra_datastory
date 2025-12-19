@@ -699,41 +699,93 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
             (Y-Axis represents percentage density to allow fair comparison between large and small clusters).
         </span>
 
-        <!-- The Analysis Grid (Side by Side) -->
+        <!-- START: Side-by-Side Data & Analysis -->
         <div class="ds-grid-2">
             
-            <!-- High LQI Analysis -->
-            <div class="ds-list-box">
-                <h4>🏆 The "Think Tanks" (High LQI)</h4>
-                <p>
-                    <b>1. The Gaming Paradox (Part 2):</b> The #1 spot isn't Politics, but <b>Hard Videogames</b> (LQI: 0.654). 
-                    Unlike casual gaming, these communities rely on dense theory-crafting and mechanics analysis, resulting in high 
-                    Cognitive Depth (0.55).
-                </p>
-                <p>
-                    <b>2. Complexity in Crypto:</b> The <b>Crypto</b> cluster (#3, 0.625) boasts the highest 
-                    <b>Cognitive Depth (0.615)</b> in the entire dataset—even higher than Politics. This suggests that financial 
-                    and technical discussions drive complex, causal language ("If market cap falls, then...").
-                </p>
-                <p>
-                    <b>3. Politics & Activism:</b> Consistently high (#2, 0.644), balancing high Formality (0.51) with strong argumentation.
-                </p>
+            <!-- LEFT: The Raw Data Table -->
+            <div class="ds-list-box" style="padding: 0; overflow: hidden; border-left: none; border-top: 4px solid var(--theme-color);">
+                <style>
+                    /* Local table styling for clean display */
+                    .stats-table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+                    .stats-table th { background: #f1f3f5; color: var(--theme-color); padding: 12px; text-align: left; font-weight: bold; border-bottom: 2px solid #ddd; }
+                    .stats-table td { padding: 10px 12px; border-bottom: 1px solid #eee; }
+                    .stats-table tr:last-child td { border-bottom: none; }
+                    .highlight-high { color: var(--theme-color); font-weight: bold; }
+                    .highlight-low { color: #d32f2f; font-weight: bold; }
+                </style>
+                
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>Cluster</th>
+                            <th>LQI</th>
+                            <th>Cog. Depth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Top 3 -->
+                        <tr>
+                            <td><strong>Hard Videogames</strong></td>
+                            <td class="highlight-high">0.654</td>
+                            <td>0.549</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Politics/Activism</strong></td>
+                            <td class="highlight-high">0.644</td>
+                            <td>0.600</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Crypto</strong></td>
+                            <td class="highlight-high">0.625</td>
+                            <td>0.615</td>
+                        </tr>
+                        
+                        <!-- Divider -->
+                        <tr><td colspan="3" style="text-align:center; color:#999; letter-spacing: 2px;">...</td></tr>
+                        
+                        <!-- Bottom 3 (Selected) -->
+                        <tr>
+                            <td><strong>Sports (Soccer)</strong></td>
+                            <td class="highlight-low">0.516</td>
+                            <td>0.464</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Memes/Oddities</strong></td>
+                            <td class="highlight-low">0.393</td>
+                            <td>0.383</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Japanese</strong></td>
+                            <td class="highlight-low">0.359</td>
+                            <td>0.370</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="padding: 10px; font-size: 0.8em; color: #666; text-align: center; background: #fafafa;">
+                    *Table: Top 3 & Bottom 3 Clusters by LQI
+                </div>
             </div>
 
-            <!-- Low LQI Analysis -->
-            <div class="ds-list-box" style="border-color: #d32f2f;">
-                <h4>🎪 The "Casual" Web (Low LQI)</h4>
+            <!-- RIGHT: The Narrative Analysis -->
+            <div>
+                <h4>1. The "Think Tanks" (High LQI)</h4>
                 <p>
-                    <b>1. The Language Artifact:</b> The lowest score belongs to <b>Japanese</b> (0.359). 
-                    The data shows abysmal Lexical Richness (0.152), confirming that our English-centric metrics struggle to parse non-Latin scripts or mixed-language content.
+                    <b>The Gaming Paradox:</b> Surprisingly, the #1 spot is <b>Hard Videogames</b>. Unlike casual gaming, these communities rely on dense theory-crafting and mechanics analysis.
                 </p>
                 <p>
-                    <b>2. Memetic Repetition:</b> <b>Memes/Oddities</b> scores very low (0.393). 
-                    Contrary to our earlier "Creative Chaos" hypothesis, the data shows low Lexical Richness (0.285) and Complexity (0.343). 
-                    This indicates communities built on repetitive templates and catchphrases rather than varied vocabulary.
+                    <b>Complexity in Crypto:</b> The <b>Crypto</b> cluster boasts the highest <b>Cognitive Depth (0.615)</b> in the entire dataset. This suggests that financial and technical discussions drive complex, causal language ("If X, then Y...") even more than <b>Politics</b>.
+                </p>
+
+                <h4 style="margin-top: 25px; color: #d32f2f;">2. The "Casual" Web (Low LQI)</h4>
+                <p>
+                    <b>Memetic Repetition:</b> <b>Memes/Oddities</b> scores very low (0.393). The data shows low Lexical Richness and Complexity, indicating communities built on repetitive templates and catchphrases rather than varied vocabulary.
+                </p>
+                <p>
+                    <b>Artifacts & Real-Time:</b> The <b>Japanese</b> cluster scores lowest due to our algorithms struggling with non-English text. Meanwhile, <b>Sports</b> clusters score low due to "Real-Time" communication—short, reactive comments during matches.
                 </p>
             </div>
         </div>
+        <!-- END: Side-by-Side Data & Analysis -->
     </div>
 </div>
 
