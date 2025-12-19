@@ -683,11 +683,12 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
         </p>
         <p>
             Use the interactive tool below to compare the <b>"Academic"</b> clusters (highest quality) 
-            against the <b>"Casual"</b> clusters (lowest quality), or explore the largest communities on Reddit.
+            against the <b>"Casual"</b> clusters (lowest quality), or explore the largest communities on Reddit. 
+            For better visual clarity, only clusters with more than 500 posts are included in this comparison.
         </p>
 
         <!-- The Graph Frame (Full Width) -->
-        <div class="ds-frame" style="height: 700px;">
+        <div class="ds-frame" style="height: 600px;">
             <iframe 
                 src="assets/plots/cluster_comparison_normalized.html" 
                 title="Cluster Linguistic Comparison">
@@ -738,20 +739,6 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
 <div class="ds-section">
     <h1>5. Linguistic variation across Reddit</h1>
     
-    <p>
-        Now that we have both our LQI metric and our Clusters, we can combine them. 
-        Does the topic determine the quality of the language? 
-    </p>
-
-    <div class="ds-todo">
-        [Note to self: Insert the comparison plot here if generated. If not, narrative analysis:]
-    </div>
-
-    <p>
-        We found that topic is a strong predictor of linguistic style, but not in a linear way. 
-        Tech and Politics clusters tend to score high on complexity but average on lexical richness (due to repeating jargon). 
-        Meanwhile, creative writing clusters score high on richness but vary wildly in formality.
-    </p>
 </div>
 
 <!-- SECTION: NEGATIVITY -->
