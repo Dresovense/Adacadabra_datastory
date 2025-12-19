@@ -673,34 +673,48 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
         </p>
     </div>
 
+    <!-- SECTION: LINGUISTIC VARIATION -->
+<div class="ds-section">
     <h2>Exploring Linguistic Styles by Community</h2>
     <p>
         The data reveals a fascinating spectrum of communication styles. By analyzing the 
         <b>Linguistic Quality Index (LQI)</b> alongside the individual metrics, we can debunk 
         some stereotypes and confirm others.
     </p>
+    <p>
+        Use the interactive tool below to compare the <b>"Academic"</b> clusters (highest quality) 
+        against the <b>"Casual"</b> clusters (lowest quality), or explore the largest communities on Reddit.
+    </p>
 
+    <!-- The Graph Frame (Full Width) -->
+    <div class="ds-frame" style="height: 700px;">
+        <iframe 
+            src="assets/plots/cluster_comparison_normalized.html" 
+            title="Cluster Linguistic Comparison">
+        </iframe>
+    </div>
+    <span class="ds-caption">
+        Normalized distribution of linguistic metrics across different community clusters. 
+        (Y-Axis represents percentage density to allow fair comparison between large and small clusters).
+    </span>
+
+    <!-- The Analysis Grid (Side by Side) -->
     <div class="ds-grid-2">
+        
         <!-- High LQI Analysis -->
         <div class="ds-list-box">
             <h4>🏆 The "Debate Halls" (High LQI)</h4>
             <p>
                 <b>1. Politics & Activism (LQI: 0.70):</b> Unsurprisingly, this cluster takes the top spot. 
-                With a Formality score of <b>0.48</b> and moderate Cognitive Depth, these communities rely on 
-                structured argumentation and standardized English.
+                With a Formality score of <b>0.48</b>, these communities rely on structured argumentation.
             </p>
             <p>
-                <b>2. The Gaming Paradox:</b> Surprisingly, <i>League of Legends</i> (0.69) and <i>Hard Videogames</i> (0.68) 
-                score exceptionally high—higher than Tech! Why? Look at the <b>Cognitive Depth</b> (0.50 vs 0.43 for Politics). 
-                Gamers aren't just mashing buttons; they are theory-crafting, analyzing patch notes, and debating mechanics 
-                using complex causal language ("If X happens, then Y...").
+                <b>2. The Gaming Paradox:</b> Surprisingly, <i>League of Legends</i> (0.69) scores higher than Tech! 
+                Gamers aren't just mashing buttons; they are theory-crafting and analyzing mechanics using complex causal language ("If X, then Y...").
             </p>
             <p>
-                <b>3. Creative Chaos:</b> The <i>Memes/Oddities</i> cluster scores high (0.68) for a specific reason: 
-                <b>Lexical Richness (0.82)</b>. While the content might be silly, the vocabulary is incredibly diverse (slang, neologisms, chaotic titles), 
-                mathematically registering as "richer" than repetitive political talking points.
-            </p>
-        </div>
+                <b>3. Creative Chaos:</b> The <i>Memes/Oddities</i> cluster scores high (0.68) due to 
+                <b>Lexical Richness (0.82)</b>. Chaotic titles and s
 
         <!-- Low LQI Analysis -->
         <div class="ds-list-box" style="border-color: #d32f2f;">
