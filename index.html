@@ -894,7 +894,7 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
         <div class="ds-abstract">
             <strong>TLDR;</strong> 
             To explore in a different way the Landscape of Reddit communities, 
-            we tried to categorize 965 active subreddits (comunities with at least 100 posts) into a strict hierarchy using only their names inputted into an LLM. 
+            we tried to categorize 476 active subreddits (comunities with at least 200 posts) into a strict hierarchy using only their names inputted into an LLM. 
             We then split every specific topic into above and bellow average named respectively "top" and "bottom" in the graph, this separation based on their LQI scores.
             This allows us to see exactly <em>which</em> subreddits are driving the quality up (or down) within their specific niches.
         </div>
@@ -941,14 +941,14 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
                 <div class="insight-body">
                     <div class="insight-content-inner">
                         <p>
-                            While <strong>Tech & Science</strong> remains the highest scoring category overall (LQI: 0.623), the internal divide is massive.
+                            While <strong>Tech & Science</strong> is the highest scoring category overall (0.621), the internal divide is massive.
                         </p>
                         <ul class="ds-list-clean">
                             <li>
-                                <strong>The Professors:</strong> Subreddits like <em>r/askscience</em> and <em>r/badhistory</em> (Formality: ~0.902) represent the peak of Reddit's formal linguistic code. They act almost as peer-reviewed journals.
+                                <strong>Academic Rigor:</strong> Subreddits like <em>r/badhistory</em> (0.977) and <em>r/askscience</em> (0.915) represent the peak of Reddit's formal linguistic code.
                             </li>
                             <li>
-                                <strong>The Utility Drop:</strong> Surprisingly, actual coding subreddits score much lower. This is likely a data artifact: our algorithms look for sentence variation and prose. Programming discussions consist of code snippets, error logs, and succinct logic—formats that lack the specific linguistic structures ("formalities") our metrics are supposed to quantify.
+                                <strong>The Utility Drop:</strong> Surprisingly, <em>r/programming</em> (0.396) scores very low. This is most likely a data artifact: our algorithms look for sentence variation and prose. Programming discussions consist of code snippets, error logs, and succinct logic—formats that lack the specific linguistic structures ("formalities") our metrics are supposed to quantify.
                             </li>
                         </ul>
                     </div>
@@ -964,10 +964,10 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
                 <div class="insight-body">
                     <div class="insight-content-inner">
                         <p>
-                            One of the most fascinating findings is the high placement of fringe communities. The <strong>Conspiracy & Fringe</strong> sub-cluster scores an impressive 0.652 LQI—significantly higher than the Politics average (0.560).
+                            One of the most fascinating findings is the high placement of fringe communities.
                         </p>
                         <p>
-                            <em>r/targetedenergyweapons</em> continues to be a prime example. This seemingly confirms a linguistic theory: <strong>Conspiracy theorists mimic academic language to gain legitimacy.</strong> 
+                            <em>r/targetedenergyweapons</em> (0.803) scores significantly higher than most mainstream news subreddits. This most likely confirms a linguistic theory: <strong>Conspiracy theorists mimic academic language.</strong> 
                         </p>
                         <p>
                             To sound authoritative, these communities utilize dense vocabulary, complex causality connectors (<em>"consequently," "therefore"</em>), and a detached formal tone. They achieve a high LQI score because the <em>structure</em> of their language is complex, even if the <em>content</em> is factually dubious.
@@ -976,46 +976,49 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
                 </div>
             </div>
 
-            <!-- CARD 3: THE ANGER PARADOX (NEW INSIGHT) -->
+            <!-- CARD 3: FANS VS ANALYSTS -->
             <div class="insight-card">
                 <div class="insight-header" onclick="toggleInsight(this)">
-                    <h4 class="insight-title">3. The Anger Paradox: Rage is Complex</h4>
+                    <h4 class="insight-title">3. The Tribal Split: Fans vs. Analysts</h4>
                     <span class="insight-icon">▼</span>
                 </div>
                 <div class="insight-body">
                     <div class="insight-content-inner">
                         <p>
-                            A common assumption is that angry internet comments are "dumb." Our data suggests the opposite might be true for specific communities.
+                            Both Gaming and Sports show a clear linguistic divide based on the <em>function</em> of the community:
                         </p>
-                        <p>
-                            In the <strong>Tech</strong> and <strong>Meta/Drama</strong> clusters, we found a negative correlation between Sentiment and LQI. In other words: <strong>The more negative the post, the higher the linguistic quality.</strong>
-                        </p>
-                        <p>
-                            This suggests that in these circles, "anger" manifests not as simple insults, but as <strong>"Rage-Debating"</strong>—long, detailed, itemized deconstructions of why someone else is wrong. Conversely, the "Happy-Chatter" clusters (Sports, Entertainment) show the opposite: positive posts are smart, while negative posts tend to be simple, emotional outbursts.
-                        </p>
+                        <ul class="ds-list-clean">
+                            <li>
+                                <strong>The Analysts:</strong> Communities like <em>r/truegaming</em> (0.904) and <em>r/atletico</em> (0.838) are top-tier. They mirror the behavior of the "Hard Videogame" cluster identified in our earlier analysis—focusing on theory-crafting and tactics.
+                            </li>
+                            <li>
+                                <strong>The Fans:</strong> Mega-communities like <em>r/pcmasterrace</em> (0.351) and <em>r/lakers</em> (0.423) rank at the bottom. These are "Hype" communities where communication is mostly phatic—cheering, memes, and short reactions—prioritizing speed and emotion over structure.
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- CARD 4: OUTLIERS & GAPS -->
+            <!-- CARD 4: OUTLIER -->
             <div class="insight-card">
                 <div class="insight-header" onclick="toggleInsight(this)">
-                    <h4 class="insight-title">4. Outliers: The Gamblers & The Surrealists</h4>
+                    <h4 class="insight-title">4. The Surrealist Outlier</h4>
                     <span class="insight-icon">▼</span>
                 </div>
                 <div class="insight-body">
                     <div class="insight-content-inner">
                         <p>
-                            Two specific outliers highlight the limits of algorithmic analysis:
+                            The single highest scoring subreddit in the Entertainment category is... <em>r/wackytictacs</em> (0.954).
                         </p>
-                        <ul class="ds-list-clean">
-                            <li>
-                                <strong>The Casual Intellectuals (Sports Betting):</strong> We found a massive "Formality Gap" in sports betting communities. They use extremely rich, specialized vocabulary (High Lexical Richness: 0.638) but wrap it in very casual grammar (Low Formality). They are smart, but they don't care about looking polite.
-                            </li>
-                            <li>
-                                <strong>The Surrealist Bug (r/wackytictacs):</strong> This meme subreddit scores an absurdly high <strong>0.876 Formality Index</strong>. This is due to "Copypastas"—dense blocks of ironic text. To an algorithm, a 500-word block of intense vocabulary looks like high-quality writing, highlighting the difficulty of distinguishing between <em>intelligence</em> and <em>complexity</em>.
-                            </li>
-                        </ul>
+                        <p>
+                            At first glance, this seems like a bug. It is a meme subreddit. However, it specializes in <strong>"Copypastas"</strong>—dense blocks of surreal, ironic text. 
+                        </p>
+                        <div class="ds-todo" style="margin: 10px 0;">
+                            To an algorithm, a 500-word block of intense, unique vocabulary looks like "High Quality" writing.
+                        </div>
+                        <p>
+                            This highlights a crucial limitation of NLP: distinguishing between authentic <em>intelligence</em> and algorithmic <em>complexity</em>.
+                        </p>
                     </div>
                 </div>
             </div>
