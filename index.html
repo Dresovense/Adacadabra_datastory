@@ -802,6 +802,102 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
             It's a Sunburst Chart: click on a slice to zoom in. The outer ring show the individual subreddits with at least 15 posts.
         </span>
 
+        <div class="ds-abstract">
+            <strong>TLDR;</strong> 
+            To explore in a different way the Landscape of Reddit communities, 
+            we tried to categorize 476 active subreddits (comunities with at least 200 posts) into a strict hierarchy using only their names inputted into an LLM. 
+            We then split every specific topic into "Above Average" and "Below Average" tiers based on their linguistic quality.
+            This allows us to see exactly <em>which</em> subreddits are driving the quality up (or down) within their specific niches.
+        </div>
+
+        <p>
+            The visualization below is an <strong>Interactive Treemap</strong>. It tries to represent as much of the volume of the dataset 
+            but we had to drop a great quantities of small subreddits for visualization purposes.
+            <br><br>
+            <strong>How to use it:</strong>
+            <br>
+            1. <strong>Click on a broad topic</strong> (e.g., "Gaming") to zoom in.
+            <br>
+            2. <strong>Click on a specific category</strong> (e.g., "Esports & Competitive").
+            <br>
+            3. You will see the subreddits split into <span style="color: #0d47a1; font-weight:bold;">High Quality (Blue)</span> 
+            and <span style="color: #b71c1c; font-weight:bold;">Low Quality (Red)</span> relative to their peers.
+        </p>
+
+        <!-- The Graph Frame -->
+        <!-- We use a tall height (950px) because the hierarchy is deep -->
+        <div class="ds-frame" style="height: 950px; border: 1px solid #ddd;">
+            <iframe 
+                src="assets/plots/hierarchical_quality_tree.html" 
+                title="Hierarchical Quality Tree"
+                style="width: 100%; height: 100%; border: none;">
+            </iframe>
+        </div>
+        
+        <span class="ds-caption">
+            Hierarchical view of Reddit's Linguistic Landscape. Size = Post Volume | Color = LQI Score.
+        </span>
+
+        <h3>Key Takeaways from the Data</h3>
+    
+        <div class="ds-grid-2">
+            <!-- Insight 1: Tech Paradox -->
+            <div class="ds-list-box">
+                <h4>1. The "Code vs. Prose" Paradox</h4>
+                <p>
+                    While <strong>Tech & Science</strong> is the highest scoring category overall (0.621), the internal divide is massive.
+                </p>
+                <ul class="ds-list-clean">
+                    <li>
+                        <strong>Academic Rigor:</strong> Subreddits like <em>r/badhistory</em> (0.977) and <em>r/askscience</em> (0.915) are again on top of the basket. Not much surprise here.
+                    </li>
+                    <li>
+                        <strong>The Utility Drop:</strong> Surprisingly, <em>r/programming</em> (0.396) and <em>r/ipad</em> (0.300) score very low. This is probably antother artifact like r/Japan or r/GermanPolitics as formalities quantized by our metrics are not much present in programming languages.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Insight 2: The Conspiracy Anomaly -->
+            <div class="ds-list-box">
+                <h4>2. The "Pseudo-Intellectual" Trap</h4>
+                <p>
+                    One of the most fascinating findings is the high placement of fringe communities.
+                </p>
+                <p>
+                    <em>r/targetedenergyweapons</em> (0.803) scores significantly higher than most mainstream news subreddits. This confirms a linguistic theory: <strong>Conspiracy theorists mimic academic language.</strong> To sound authoritative, these communities most likely use dense vocabulary, complex causality (<em>"because X, then Y"</em>), and formal tone, resulting in a high LQI despite the content being factually dubious.
+                </p>
+            </div>
+        </div>
+
+        <div class="ds-grid-2">
+            <!-- Insight 3: The Fan vs. Analyst -->
+            <div class="ds-list-box">
+                <h4>3. Fans vs. Analysts (Sports & Gaming)</h4>
+                <p>
+                    Both Gaming and Sports show a clear "Tribal Split":
+                </p>
+                <ul class="ds-list-clean">
+                    <li>
+                        <strong>The Analysts:</strong> <em>r/truegaming</em> (0.904) and <em>r/atletico</em> (0.838) are top-tier. Similar to the hardcore gaming communities seen on the previous clustering method.
+                    </li>
+                    <li>
+                        <strong>The Fans:</strong> <em>r/pcmasterrace</em> (0.351) and <em>r/lakers</em> (0.423) are bottom-tier. These are most likely massive "Hype" communities where communication is phatic—cheering, memes, and short reactions.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Insight 4: The Outliers -->
+            <div class="ds-list-box">
+                <h4>4. The Surrealist Outlier</h4>
+                <p>
+                    The single highest scoring subreddit in Entertainment is... <em>r/wackytictacs</em> (0.954).
+                </p>
+                <p>
+                    At first glance, this seems like a bug. It is a meme subreddit. However, it specializes in <strong>"Copypastas"</strong>—dense blocks of surreal, ironic text. To an algorithm, a 500-word block of intense, unique vocabulary looks like "High Quality" writing. This highlights the difficulty of distinguishing between <em>intelligence</em> and <em>complexity</em>.
+                </p>
+            </div>
+        </div>
+
     </div>
 </div>
 
