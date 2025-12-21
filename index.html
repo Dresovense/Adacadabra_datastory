@@ -610,7 +610,7 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
     <h1>4. Linguistic variation within a topic/community</h1>
     <!-- <img src="assets/reddit_posts/comment_1.png" class="ds-reddit-post"> -->
 
-    <h2>Introduction</h2>
+    <!-- <h2>Introduction</h2> -->
 
     <div class="ds-abstract">
         <strong>TLDR;</strong> 
@@ -1081,6 +1081,41 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
         <strong>TLDR;</strong> A common assumption is that negative content is "lower quality"—think of flame wars, trolls, and insults. 
         However, our data tells a more complex story.
     </div>
+
+    <!-- PLOT 2 -->
+    <div style="margin-bottom: 40px;">
+        <div class="ds-frame" style="height: 550px;">
+            <img src="assets/plots/robust_features_by_post_sentiment.png" class="ds-img-responsive">
+        </div>
+        <span class="ds-caption">Features by Post Sentiment</span>
+    </div>
+
+    <p>
+        The plot above shows the posts' scores for each variable, depending on the posts' sentiment link. However, only 
+        <em>vader_compound</em>, another measure of sentiment, shows a meaningful difference between positive and
+        negative posts. As such, we cannot dismiss negativity as simply being "low-quality", but indeed both dimensions 
+        are capable of both low-quality "slop" and high-quality arguments.
+    </p>
+
+    <div class="ds-frame" style="max-width: 850px; width: 100%; aspect-ratio: 2 / 1; margin: auto;">
+        <iframe 
+            src="assets/plots/lqi_nega_scatter.html" 
+            title="Relationship between LQI and Subreddit Negativity"
+            style="border: none;">
+        </iframe>
+    </div>
+
+    <p>
+        Looking at the relationship between LQI and the proportion of negative
+        links in a subreddit, we find that indeed, there is no correlation
+        between negativity and linguistic quality (R<sup>2</sup> = 0.02). However,
+        we do see that high-LQI communities tend to be less negative, while we
+        a cluster of moderate-LQI, but high negativity tends to form, comprised mostly
+        of "drama-centric" subreddits. Thus, we see that linguistic competence is not
+        intrinsically linked with negativity or positivity, but is a tool that allows
+        users to express their views depending on the context they are in (i.e. negative or
+        positive emotions will not be shared in the same manner in <em>r/memes</em> or <em>r/badhistory</em>).  
+    </p>
 
     <div class="ds-grid-2">
         <div class="ds-blockquote">
