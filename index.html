@@ -546,14 +546,20 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
     <h3>Visualizing the Embedding Weaknesses</h3>
     <p>
         The following graphs illustrate the "fuzzy" nature of these communities.
-        On <b>Figure 1</b>, a 2D projection (using dimensionality reduction) of the 50,000 subreddits shows the vectors
-        forming a large, dense circle with significant overlap. This visualization confirms that many communities
+        On <b>Figure 1</b>, a 2D projection (using dimensionality reduction) of the 50,000 subreddits shows the 300-dimensional vectors
+        in a 2D-space. Each point represents a subreddit (put your mouse on a point to see which one). We see that the 
+        subreddits are not clustered into distinct groups, but rather
+        forming a large, dense circle with significant overlap.  We can still identify isolated clusters like on (5, -5) which is quite defined.
+        By zooming and looking at subreddits names, we can see that it should be related to pop culture or video-games with subreddits
+        like <b>capecodegaming</b>, <b>interactivecinema</b> or <b>virtualrealitygaming</b>. Nevertheless it is hard to confirm this since 
+        there is a lot of noise. There is also subreddits as <b>snowskating</b> or <b>abstraction</b>. This visualization confirms that many communities
         are not clearly separated.
-        On <b>Figure 2</b>, the graph displays the distribution of close neighbors (subreddits with a cosine similarity
-        > 0.8).
-        Cosine similarity measures the orientation of two vectors in the 300-dimensional space, ranging from -1
-        (opposite)
-        to 1 (identical). The distribution reveals a non-negligible number of subreddits that have more than 10,000
+        On <b>Figure 2</b>, the graph displays the distribution of close neighbors. The x-axis represents the number of 
+        neighbors as the y-axis shows the number of subreddits.  
+        A close neighbor is defined using cosine similarity. Cosine similarity measures the orientation of two vectors
+         in the 300-dimensional space, ranging from -1 (opposite)
+        to 1 (identical). In order to be closed, a neighbor needs 80% similarity. 
+         The distribution reveals a non-negligible number of subreddits that have more than 10,000
         neighbors
         with over 80% similarity.
     </p>
@@ -563,7 +569,7 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
         <div class="ds-frame" style="height: 600px;">
             <iframe src="assets/plots/embeddings_and_clustering/reddit_map.html"></iframe>
         </div>
-        <span class="ds-caption">Figure 1: 2D Projection of Subreddits (The "Blob" of Reddit)</span>
+        <span class="ds-caption">Figure 1: 2D Projection of Subreddits embeddings.  (The "Blob" of Reddit)</span>
     </div>
 
     <!-- PLOT 2 -->
