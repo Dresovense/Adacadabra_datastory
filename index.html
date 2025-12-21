@@ -602,24 +602,80 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
             Figure 5: Normalized distribution of linguistic metrics from individual subreddits. 
             Y-Axis represents percentage density to allow fair comparison between with differently sized subs with at least 500 posts. (single or double click on legend to isolate subreddits)
     </span>
-    
-    <div class="ds-todo">
-        There is a plot that seems to be missing as the analysis does not match    
-    </div>
 
-    <div style="margin-top: 20px;">
-        <p><b>Analysis of the Leaderboard:</b></p>
-        <p>
-            The distinction is stark. The top-performing subreddits are dominated by specific, 
-            knowledge-heavy communities like <i>r/AskHistorians</i> or <i>r/explainlikeimfive</i>. These communities enforce strict 
-            moderation policies that require detailed, cited responses, naturally inflating their Structural Complexity and Cognitive Depth scores.
-        </p>
-        <p>
-            Conversely, the bottom-performing subreddits are populated by meme subreddits and rapid-fire gaming communities. 
-            However, "low quality" here doesn't necessarily mean "stupid." It often reflects a different <i>function</i> 
-            of language: efficient, high-context communication (memes, slang) that prioritizes speed and communities dependent text structures over formalities.
-        </p>
-    </div>
+            <!-- START: Side-by-Side Data & Analysis -->
+            <div class="ds-grid-2" style="grid-template-columns: auto auto auto;">
+            
+                <!-- LEFT: The Data Table (HIGH LQI) -->
+                <div class="ds-list-box" style="padding: 0; overflow: hidden; border-left: none; border-top: 4px solid var(--theme-color);">
+                    <table class="ds-table">
+                        <thead>
+                            <tr>
+                                <th>Subreddit</th>
+                                <th>LQI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- HIGH LQI SECTION -->
+                            <tr><td colspan="2" class="ds-table-header">🏆 Top 10</td></tr>
+                            <tr><td>r/badhistory</td><td class="val-high">0.977</td></tr>
+                            <tr><td>r/trendingsubreddits</td><td class="val-high">0.939</td></tr>
+                            <tr><td>r/askhistorians</td><td class="val-high">0.914</td></tr>
+                            <tr><td>r/dailydot</td><td class="val-high">0.870</td></tr>
+                            <tr><td>r/undelete</td><td class="val-high">0.829</td></tr>
+                            <tr><td>r/openbroke</td><td class="val-high">0.824</td></tr>
+                            <tr><td>r/subredditoftheday</td><td class="val-high">0.809</td></tr>
+                            <tr><td>r/explainlikeimfive</td><td class="val-high">0.806</td></tr>
+                            <tr><td>r/karmacourt</td><td class="val-high">0.792</td></tr>
+                            <tr><td>r/nostupidquestions</td><td class="val-high">0.785</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Middle: The Data Table (LOW LQI) -->
+                <div class="ds-list-box" style="padding: 0; overflow: hidden; border-left: none; border-top: 4px solid var(--theme-color);">
+                    <table class="ds-table">
+                        <thead>
+                            <tr>
+                                <th>Subreddit</th>
+                                <th>LQI</th>
+                            </tr>
+                        </thead>
+                        <tbody>    
+                            <!-- LOW LQI SECTION -->
+                            <tr><td colspan="2" class="ds-table-header" style="background:#ffebee; color:#d32f2f;">🎪 Bottom 5</td></tr>
+                            <tr><td>r/bestoftldr</td><td class="val-low">0.188</td></tr>
+                            <tr><td>r/peoplewhosayheck</td><td class="val-low">0.223</td></tr>
+                            <tr><td>r/soposts</td><td class="val-low">0.230</td></tr>
+                            <tr><td>r/evenwithcontext</td><td class="val-low">0.247</td></tr>
+                            <tr><td>r/shitpost</td><td class="val-low">0.252</td></tr>
+                            <tr><td>r/gamingcirclejerk</td><td class="val-low">0.273</td></tr>
+                            <tr><td>r/fitnesscirclejerk</td><td class="val-low">0.297</td></tr>
+                            <tr><td>r/negativewithgold</td><td class="val-low">0.300</td></tr>
+                            <tr><td>r/againskarmawhores</td><td class="val-low">0.330</td></tr>
+                            <tr><td>r/japancirclejerk</td><td class="val-low">0.331</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <!-- RIGHT: The Narrative Analysis -->
+                <div>
+                    <p><b>Analysis of the Leaderboard:</b></p>
+                    <p>
+                        The distinction is stark. The top-performing subreddits are dominated by specific, 
+                        knowledge-heavy communities like <i>r/AskHistorians</i> or <i>r/explainlikeimfive</i>. These communities enforce strict 
+                        moderation policies that require detailed, cited responses, naturally inflating their Structural Complexity and Cognitive Depth scores.
+                    </p>
+                    <p>
+                        Conversely, the bottom-performing subreddits are populated by meme subreddits and rapid-fire gaming communities. 
+                        However, "low quality" here doesn't necessarily mean "stupid." It often reflects a different <i>function</i> 
+                        of language: efficient, high-context communication (memes, slang) that prioritizes speed and communities dependent text structures over formalities.
+                    </p>
+                </div>
+            </div>
+            <!-- END: Side-by-Side Data & Analysis -->
+
+
 </div>
 
 <!-- SECTION: CLUSTERING / COMMUNITY -->
