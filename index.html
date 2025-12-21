@@ -1553,210 +1553,211 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
     
             /* Low */
         </style>
+    </div>
 
-        <div class="ds-frame" style="border: none; background: transparent; padding: 0;">
-        
-            <style>
-                .lqi-card {
-                    background: #ffffff;
-                    border-radius: 16px;
-                    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-                    /* Soft, elegant shadow */
-                    padding: 40px;
-                    max-width: 800px;
-                    margin: 0 auto;
-                    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                    color: #333;
-                }
-        
-                /* Header Styling */
-                .lqi-header {
-                    text-align: center;
-                    margin-bottom: 35px;
-                    position: relative;
-                }
-        
-                .lqi-title {
-                    margin: 0 0 10px 0;
-                    font-size: 1.5rem;
-                    font-weight: 700;
-                    color: #2c3e50;
-                    letter-spacing: -0.5px;
-                }
-        
-                .lqi-legend {
-                    font-size: 0.9rem;
-                    color: #7f8c8d;
-                    font-family: 'Courier New', monospace;
-                    /* Monospace for technical feel */
-                    background: #f8f9fa;
-                    display: inline-block;
-                    padding: 5px 15px;
-                    border-radius: 20px;
-                    border: 1px solid #eee;
-                }
-        
-                /* The Data Grid */
-                .lqi-row {
-                    display: flex;
-                    align-items: center;
-                    margin-bottom: 20px;
-                    height: 30px;
-                }
-        
-                .lqi-label {
-                    width: 140px;
-                    text-align: right;
-                    padding-right: 20px;
-                    font-weight: 600;
-                    font-size: 0.95rem;
-                    color: #555;
-                }
-        
-                .lqi-bar-track {
-                    flex-grow: 1;
-                    background-color: #f0f2f5;
-                    height: 10px;
-                    border-radius: 5px;
-                    overflow: hidden;
-                    position: relative;
-                }
-        
-                .lqi-bar-fill {
-                    height: 100%;
-                    border-radius: 5px;
-                    width: 0;
-                    /* Animated with CSS */
-                    transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-                }
-        
-                .lqi-value {
-                    width: 60px;
-                    padding-left: 15px;
-                    font-weight: bold;
-                    font-size: 1rem;
-                    color: #333;
-                }
-        
-                /* Colors based on complexity */
-                .fill-stem {
-                    background: linear-gradient(90deg, #66bb6a, #2e7d32);
-                }
-        
-                /* Green */
-                .fill-hum {
-                    background: linear-gradient(90deg, #42a5f5, #1565c0);
-                }
-        
-                /* Blue */
-                .fill-hob {
-                    background: linear-gradient(90deg, #ffee58, #f9a825);
-                }
-        
-                /* Yellow */
-                .fill-ent {
-                    background: linear-gradient(90deg, #ef5350, #c62828);
-                }
-        
-                /* Red */
-                .fill-meme {
-                    background: linear-gradient(90deg, #ab47bc, #4a148c);
-                }
-        
-                /* Purple */
-        
-                /* Animation Trigger (Simple Fade In) */
-                .lqi-row {
+    <div class="ds-frame" style="border: none; background: transparent; padding: 0;">
+    
+        <style>
+            .lqi-card {
+                background: #ffffff;
+                border-radius: 16px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+                /* Soft, elegant shadow */
+                padding: 40px;
+                max-width: 800px;
+                margin: 0 auto;
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                color: #333;
+            }
+    
+            /* Header Styling */
+            .lqi-header {
+                text-align: center;
+                margin-bottom: 35px;
+                position: relative;
+            }
+    
+            .lqi-title {
+                margin: 0 0 10px 0;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #2c3e50;
+                letter-spacing: -0.5px;
+            }
+    
+            .lqi-legend {
+                font-size: 0.9rem;
+                color: #7f8c8d;
+                font-family: 'Courier New', monospace;
+                /* Monospace for technical feel */
+                background: #f8f9fa;
+                display: inline-block;
+                padding: 5px 15px;
+                border-radius: 20px;
+                border: 1px solid #eee;
+            }
+    
+            /* The Data Grid */
+            .lqi-row {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                height: 30px;
+            }
+    
+            .lqi-label {
+                width: 140px;
+                text-align: right;
+                padding-right: 20px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: #555;
+            }
+    
+            .lqi-bar-track {
+                flex-grow: 1;
+                background-color: #f0f2f5;
+                height: 10px;
+                border-radius: 5px;
+                overflow: hidden;
+                position: relative;
+            }
+    
+            .lqi-bar-fill {
+                height: 100%;
+                border-radius: 5px;
+                width: 0;
+                /* Animated with CSS */
+                transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+    
+            .lqi-value {
+                width: 60px;
+                padding-left: 15px;
+                font-weight: bold;
+                font-size: 1rem;
+                color: #333;
+            }
+    
+            /* Colors based on complexity */
+            .fill-stem {
+                background: linear-gradient(90deg, #66bb6a, #2e7d32);
+            }
+    
+            /* Green */
+            .fill-hum {
+                background: linear-gradient(90deg, #42a5f5, #1565c0);
+            }
+    
+            /* Blue */
+            .fill-hob {
+                background: linear-gradient(90deg, #ffee58, #f9a825);
+            }
+    
+            /* Yellow */
+            .fill-ent {
+                background: linear-gradient(90deg, #ef5350, #c62828);
+            }
+    
+            /* Red */
+            .fill-meme {
+                background: linear-gradient(90deg, #ab47bc, #4a148c);
+            }
+    
+            /* Purple */
+    
+            /* Animation Trigger (Simple Fade In) */
+            .lqi-row {
+                opacity: 0;
+                animation: fadeInUp 0.5s ease forwards;
+            }
+    
+            .lqi-row:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+    
+            .lqi-row:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+    
+            .lqi-row:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+    
+            .lqi-row:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+    
+            .lqi-row:nth-child(5) {
+                animation-delay: 0.5s;
+            }
+    
+            @keyframes fadeInUp {
+                from {
                     opacity: 0;
-                    animation: fadeInUp 0.5s ease forwards;
+                    transform: translateY(10px);
                 }
-        
-                .lqi-row:nth-child(1) {
-                    animation-delay: 0.1s;
+    
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
                 }
+            }
+        </style>
         
-                .lqi-row:nth-child(2) {
-                    animation-delay: 0.2s;
-                }
-        
-                .lqi-row:nth-child(3) {
-                    animation-delay: 0.3s;
-                }
-        
-                .lqi-row:nth-child(4) {
-                    animation-delay: 0.4s;
-                }
-        
-                .lqi-row:nth-child(5) {
-                    animation-delay: 0.5s;
-                }
-        
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(10px);
-                    }
-        
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-            </style>
-        
-            <div class="lqi-card">
-                <div class="lqi-header">
-                    <h3 class="lqi-title">Average Linguistic Quality (LQI) by Macro-Genre</h3>
-                    <div class="lqi-legend">
-                        0.0 = "Casual/Meme" &nbsp;&nbsp;|&nbsp;&nbsp; 1.0 = "Academic/Formal"
-                    </div>
-                </div>
-        
-                <div class="lqi-body">
-        
-                    <div class="lqi-row">
-                        <div class="lqi-label">STEM & Science</div>
-                        <div class="lqi-bar-track">
-                            <div class="lqi-bar-fill fill-stem" style="width: 85%;"></div>
-                        </div>
-                        <div class="lqi-value">0.85</div>
-                    </div>
-        
-                    <div class="lqi-row">
-                        <div class="lqi-label">Humanities</div>
-                        <div class="lqi-bar-track">
-                            <div class="lqi-bar-fill fill-hum" style="width: 78%;"></div>
-                        </div>
-                        <div class="lqi-value">0.78</div>
-                    </div>
-        
-                    <div class="lqi-row">
-                        <div class="lqi-label">Niche Hobbies</div>
-                        <div class="lqi-bar-track">
-                            <div class="lqi-bar-fill fill-hob" style="width: 60%;"></div>
-                        </div>
-                        <div class="lqi-value">0.60</div>
-                    </div>
-        
-                    <div class="lqi-row">
-                        <div class="lqi-label">Entertainment</div>
-                        <div class="lqi-bar-track">
-                            <div class="lqi-bar-fill fill-ent" style="width: 35%;"></div>
-                        </div>
-                        <div class="lqi-value">0.35</div>
-                    </div>
-        
-                    <div class="lqi-row">
-                        <div class="lqi-label">Memes</div>
-                        <div class="lqi-bar-track">
-                            <div class="lqi-bar-fill fill-meme" style="width: 20%;"></div>
-                        </div>
-                        <div class="lqi-value">0.20</div>
-                    </div>
-        
+        <div class="lqi-card">
+            <div class="lqi-header">
+                <h3 class="lqi-title">Average Linguistic Quality (LQI) by Macro-Genre</h3>
+                <div class="lqi-legend">
+                    0.0 = "Casual/Meme" &nbsp;&nbsp;|&nbsp;&nbsp; 1.0 = "Academic/Formal"
                 </div>
             </div>
+    
+            <div class="lqi-body">
+    
+                <div class="lqi-row">
+                    <div class="lqi-label">STEM & Science</div>
+                    <div class="lqi-bar-track">
+                        <div class="lqi-bar-fill fill-stem" style="width: 85%;"></div>
+                    </div>
+                    <div class="lqi-value">0.85</div>
+                </div>
+    
+                <div class="lqi-row">
+                    <div class="lqi-label">Humanities</div>
+                    <div class="lqi-bar-track">
+                        <div class="lqi-bar-fill fill-hum" style="width: 78%;"></div>
+                    </div>
+                    <div class="lqi-value">0.78</div>
+                </div>
+    
+                <div class="lqi-row">
+                    <div class="lqi-label">Niche Hobbies</div>
+                    <div class="lqi-bar-track">
+                        <div class="lqi-bar-fill fill-hob" style="width: 60%;"></div>
+                    </div>
+                    <div class="lqi-value">0.60</div>
+                </div>
+    
+                <div class="lqi-row">
+                    <div class="lqi-label">Entertainment</div>
+                    <div class="lqi-bar-track">
+                        <div class="lqi-bar-fill fill-ent" style="width: 35%;"></div>
+                    </div>
+                    <div class="lqi-value">0.35</div>
+                </div>
+    
+                <div class="lqi-row">
+                    <div class="lqi-label">Memes</div>
+                    <div class="lqi-bar-track">
+                        <div class="lqi-bar-fill fill-meme" style="width: 20%;"></div>
+                    </div>
+                    <div class="lqi-value">0.20</div>
+                </div>
+    
+            </div>
         </div>
+    </div>
     
 
     </div>
