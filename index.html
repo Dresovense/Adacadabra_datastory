@@ -551,10 +551,22 @@ subtitle: Data-driven Linguistic Quality Analysis based on Reddit data
                 An essential check was to ensure our metrics weren't just measuring the same thing four times. 
                 As the correlation matrix shows, our chosen features have low overlap. 
             </p>
-            <p>
+            <!-- <p>
                 Interestingly, <b>Lexical Richness</b> is negatively correlated with <b>Syntactic Complexity</b>. This makes sense: 
                 complex academic texts often reuse specific terminology (low richness) within very long, complex sentences. 
                 This confirms that each feature captures a unique dimension of the "Linguistic Profile."
+            </p> -->
+            <p> 
+                Interestingly, <b>Structural Complexity</b> and <b>Cognitive Depth</b> have
+                the highest amount of correlation between our four metrics. While it is low enough
+                to understand that measure different dimensions of the "linguisic profile", it can
+                be explained from the fact that posts with a complex argument will tend to
+                make use of more complex words and sentence structures.
+            </p>
+            <p>
+                Moreover, we also see a non existent correlation between <b>LQI</b> and 
+                different sentiment metrics. While this will be developped in a further section,
+                it already hints to a non-link between sentiments and linguistic quality.
             </p>
         </div>
     </div>
